@@ -11,4 +11,5 @@ apk add -U sudo docker git openrc openssh;
 rc-update add docker boot
 
 # Add user
-adduser james -D;
+addgroup sudo
+adduser james -D -G sudo;
