@@ -1,3 +1,6 @@
 FROM alpine:latest
-ADD ./setup.sh /setup.sh
-RUN /setup.sh && rm setup.sh
+ADD ./setupRoot.sh /setupRoot.sh
+RUN /setupRoot.sh && rm /setupRoot.sh
+USER james
+ADD ./setupUser.sh /setupUser.sh
+RUN ./setupUser.sh && rm /setupUser.sh

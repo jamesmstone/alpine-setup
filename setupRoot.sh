@@ -6,7 +6,7 @@ echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
 # update current packages
 apk upgrade -U
 # install new packages
-apk add -U sudo docker git openrc openssh;
+apk add -U sudo docker git openrc openssh make bash;
 # run docker on boot
 rc-update add docker boot
 
