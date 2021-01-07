@@ -22,3 +22,14 @@ jobs:
               --packages "$(cat example/packages)" \
               --script-chroot \
               alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
+          mkdir public
+          mv alpine-virthardened-$(date +%Y-%m-%d).qcow2 ./public
+      -
+        name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
