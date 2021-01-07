@@ -22,15 +22,15 @@ jobs:
               --packages "$(cat example/packages)" \
               --script-chroot \
               alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
-          zip --junk-paths alpine-virthardened-$(date +%Y-%m-%d).qcow2.zip alpine-virthardened-$(date +%Y-%m-%d).qcow2
+          zip --junk-paths alpine-virthardened.qcow2.zip alpine-virthardened-$(date +%Y-%m-%d).qcow2
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}.${{ github.run_id }}
+          release_name: Release ${{ github.run_id }} - ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -40,6 +40,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./alpine-virthardened-$(date +%Y-%m-%d).qcow2.zip
-          asset_name: alpine-virthardened-$(date +%Y-%m-%d).qcow2.zip
+          asset_path: ./alpine-virthardened.qcow2.zip
+          asset_name: alpine-virthardened.qcow2.zip
           asset_content_type: application/zip
