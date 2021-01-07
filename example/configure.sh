@@ -8,7 +8,7 @@ step() {
 
 
 step 'Set up timezone'
-setup-timezone -z Europe/Prague
+setup-timezone -z Australia/Melbourne
 
 step 'Set up networking'
 cat > /etc/network/interfaces <<-EOF
@@ -32,3 +32,8 @@ rc-update add crond default
 rc-update add net.eth0 default
 rc-update add net.lo boot
 rc-update add termencoding boot
+rc-update add docker boot
+
+step 'Add X'
+setup-xorg-base
+apk add --update --no-progress dwm
