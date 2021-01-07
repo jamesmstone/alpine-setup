@@ -25,6 +25,9 @@ sed -Ei \
 	-e 's/^[# ](unicode)=.*/\1=YES/' \
 	/etc/rc.conf
 
+step 'Set up SSH'
+setup-sshd -c dropbear
+
 step 'Enable services'
 rc-update add acpid default
 rc-update add chronyd default
