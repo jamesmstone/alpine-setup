@@ -40,3 +40,13 @@ rc-update add docker boot
 step 'Add X'
 setup-xorg-base
 apk add --update --no-progress dwm
+
+step 'Add default user'
+addgroup sudo # give default user root access
+adduser james -D -G sudo;
+
+# Add dotfiles
+sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
+# Install dotfiles
+sudo -u james make -C /home/james/dotfiles
+
