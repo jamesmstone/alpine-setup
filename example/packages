@@ -1,6 +1,12 @@
+bash
 chrony
+docker
+emacs-nox
+git
 less
 logrotate
+make
+openrc
 openssh
-ssmtp
+mosh
 sudo
