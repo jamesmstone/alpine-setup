@@ -21,6 +21,10 @@ jobs:
               --packages "$(cat example/packages)" \
               --script-chroot \
               alpine-virthardened.raw -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
+      - name: Delete latest release
+        uses: ame-yu/action-delete-latest-release@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
