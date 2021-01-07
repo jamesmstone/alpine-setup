@@ -12,17 +12,15 @@ jobs:
           sudo apt-get install qemu-utils
 
       - uses: actions/checkout@v2
-
       - name: Build image
         run: |
           sudo ./alpine-make-vm-image \
-              --image-format qcow2 \
-              --image-size 2G \
+              --image-format raw \
+              --image-size 2023M  \
               --repositories-file example/repositories \
               --packages "$(cat example/packages)" \
               --script-chroot \
-              alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
-          zip --junk-paths alpine-virthardened.qcow2.zip alpine-virthardened-$(date +%Y-%m-%d).qcow2
+              alpine-virthardened.raw -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,6 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./alpine-virthardened.qcow2.zip
-          asset_name: alpine-virthardened.qcow2.zip
-          asset_content_type: application/zip
+          asset_path: ./alpine-virthardened.raw
+          asset_name: alpine-virthardened.raw
+          asset_content_type: application/raw
