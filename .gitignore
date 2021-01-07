@@ -1,3 +1,4 @@
 .idea/
 *.raw
 *.qcow2
+*.vhdx
