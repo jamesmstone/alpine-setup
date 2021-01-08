@@ -28,6 +28,7 @@ sed -Ei \
 step 'Set up SSH'
 setup-sshd -c dropbear
 
+
 step 'Enable services'
 rc-update add acpid default
 rc-update add chronyd default
@@ -44,6 +45,11 @@ apk add --update --no-progress dwm
 step 'Add default user'
 addgroup sudo # give default user root access
 adduser james -D -G sudo;
+
+# add ssh access from all my github keys
+sudo -u james mkdir -p /home/james/.ssh
+sudo -u james wget -O - https://github.com/jamesmstone.keys | sudo -u james tee -a /home/james/.ssh/authorized_keys
+
 
 # Add dotfiles
 sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
