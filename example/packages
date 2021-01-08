@@ -3,6 +3,7 @@ chrony
 docker
 emacs-nox
 git
+keybase-client
 less
 logrotate
 make
