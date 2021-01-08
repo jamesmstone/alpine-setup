@@ -43,8 +43,8 @@ setup-xorg-base
 apk add --update --no-progress dwm
 
 step 'Add default user'
-addgroup sudo # give default user root access
-adduser james -D -G sudo;
+adduser james -D -G wheel;
+echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 
 # add ssh access from all my github keys
 sudo -u james mkdir -p /home/james/.ssh
