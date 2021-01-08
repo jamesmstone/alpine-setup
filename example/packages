@@ -8,6 +8,5 @@ less
 logrotate
 make
 openrc
-openssh
 mosh
 sudo
