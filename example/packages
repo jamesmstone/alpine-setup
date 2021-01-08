@@ -7,6 +7,8 @@ keybase-client
 less
 logrotate
 make
-openrc
+man-pages
+mandoc
 mosh
+openrc
 sudo
