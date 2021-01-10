@@ -12,3 +12,9 @@ mandoc
 mosh
 openrc
 sudo
+xvfb
+x11vnc
+firefox
+wqy-zenhei
+novnc
+websockify
