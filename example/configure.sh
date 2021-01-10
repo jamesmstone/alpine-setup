@@ -40,7 +40,14 @@ rc-update add docker boot
 
 step 'Add X'
 setup-xorg-base
-apk add --update --no-progress dwm
+apk add --update --no-progress \
+  dwm \
+  xvfb \
+  x11vnc \
+  firefox \
+  wqy-zenhei \
+  novnc \
+  websockify
 
 step 'Add default user'
 adduser james -D -G wheel;
@@ -55,4 +62,5 @@ sudo -u james wget -O - https://github.com/jamesmstone.keys | sudo -u james tee 
 sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
 # Install dotfiles
 sudo -u james make -C /home/james/dotfiles
+
 
