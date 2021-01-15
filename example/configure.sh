@@ -43,7 +43,7 @@ setup-xorg-base
 apk add --update --no-progress \
   dwm \
   firefox \
-  vino@community \
+  vino \
   xrdp
 
 step 'Add default user'
