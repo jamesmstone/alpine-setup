@@ -46,6 +46,11 @@ apk add --update --no-progress \
   vino \
   xrdp
 
+# start on boot
+rc-update add xrdp
+rc-update add xrdp-sesman
+rc-update add vino
+
 step 'Add default user'
 adduser james -D -G wheel;
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
