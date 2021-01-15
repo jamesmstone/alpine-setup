@@ -42,12 +42,9 @@ step 'Add X'
 setup-xorg-base
 apk add --update --no-progress \
   dwm \
-  xvfb \
-  x11vnc \
   firefox \
-  wqy-zenhei \
-  novnc \
-  websockify
+  vino@community \
+  xrdp
 
 step 'Add default user'
 adduser james -D -G wheel;
