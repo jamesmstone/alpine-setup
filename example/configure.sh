@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e # set fail on error
 
 _step_counter=0
 step() {
