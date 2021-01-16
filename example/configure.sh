@@ -50,7 +50,7 @@ add dwm \
   xorgxrdp \
   xrdp
 
-sed -i -e '/# exec xterm/c\exec dwm' /etc/xrdp/startwm.sh
+#sed -i -e '/# exec xterm/c\exec dwm' /etc/xrdp/startwm.sh
 cat <<EOF > /etc/xrdp/xrdp.ini
 [Globals]
 ; xrdp.ini file version number
