@@ -1,10 +1,14 @@
 #!/bin/sh
-set -e # set fail on error
+set -eu # set  -e fail on error, -u treat unset variables as an error when substituting.
 
 _step_counter=0
 step() {
 	_step_counter=$(( _step_counter + 1 ))
 	printf '\n\033[1;36m%d) %s\033[0m\n' $_step_counter "$@" >&2  # bold cyan
+}
+
+add() {
+	apk add --update --no-progress "$@"
 }
 
 
@@ -27,8 +31,8 @@ sed -Ei \
 	/etc/rc.conf
 
 step 'Set up SSH'
-setup-sshd -c dropbear
-
+setup-sshd -c dropbear || true
+add mosh
 
 step 'Enable services'
 rc-update add acpid default
@@ -41,8 +45,7 @@ rc-update add docker boot
 
 step 'Add X'
 setup-xorg-base
-apk add --update --no-progress \
-  dwm \
+add dwm \
   firefox \
   vino \
   xrdp
