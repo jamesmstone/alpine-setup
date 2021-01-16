@@ -9,7 +9,7 @@ on:
       region:
         description: 'Vultr Region id, see: https://api.vultr.com/v2/regions'
         required: true
-        default: 'ewr'
+        default: 'syd'
       plan:
         description: 'Vultr Plan id, see: https://api.vultr.com/v2/plans'
         required: true
