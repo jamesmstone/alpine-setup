@@ -47,31 +47,30 @@ step 'Add X'
 setup-xorg-base || true
 add dwm \
   firefox \
-  vino \
+  xorgxrdp \
   xrdp
 
-cat <<EOF > /etc/xrdp/xrdp.ini
-[globals]
-bitmap_cache=yes
-bitmap_compression=yes
-port=3389
-crypt_level=low
-channel_code=1
-max_bpp=24
-
-[xrdp1]
-name=Vino
-lib=libvnc.so
-ip=127.0.0.1
-port=5900
-username=ask
-password=ask
-EOF
+#cat <<EOF > /etc/xrdp/xrdp.ini
+#[globals]
+#bitmap_cache=yes
+#bitmap_compression=yes
+#port=3389
+#crypt_level=low
+#channel_code=1
+#max_bpp=24
+#
+#[xrdp1]
+#name=Vino
+#lib=libvnc.so
+#ip=127.0.0.1
+#port=5900
+#username=ask
+#password=ask
+#EOF
 
 # start on boot
 rc-update add xrdp
 rc-update add xrdp-sesman
-rc-update add vino
 
 step 'Add default user'
 adduser james -D -G wheel;
