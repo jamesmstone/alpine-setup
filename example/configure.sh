@@ -134,69 +134,6 @@ use_fastpath=both
 ; You can set the PAM error text in a gateway setup (MAX 256 chars)
 #pamerrortxt=change your password according to policy at http://url
 
-;
-; colors used by windows in RGB format
-;
-blue=009cb5
-grey=dedede
-#black=000000
-#dark_grey=808080
-#blue=08246b
-#dark_blue=08246b
-#white=ffffff
-#red=ff0000
-#green=00ff00
-#background=626c72
-
-;
-; configure login screen
-;
-
-; Login Screen Window Title
-ls_title=Alpine
-
-; top level window background color in RGB format
-ls_top_window_bg_color=009cb5
-
-; width and height of login screen
-ls_width=350
-ls_height=430
-
-; login screen background color in RGB format
-ls_bg_color=dedede
-
-; optional background image filename (bmp format).
-#ls_background_image=
-
-; logo
-; full path to bmp-file or file in shared folder
-ls_logo_filename=
-ls_logo_x_pos=55
-ls_logo_y_pos=50
-
-; for positioning labels such as username, password etc
-ls_label_x_pos=30
-ls_label_width=65
-
-; for positioning text and combo boxes next to above labels
-ls_input_x_pos=110
-ls_input_width=210
-
-; y pos for first label and combo box
-ls_input_y_pos=220
-
-; OK button
-ls_btn_ok_x_pos=142
-ls_btn_ok_y_pos=370
-ls_btn_ok_width=85
-ls_btn_ok_height=30
-
-; Cancel button
-ls_btn_cancel_x_pos=237
-ls_btn_cancel_y_pos=370
-ls_btn_cancel_width=85
-ls_btn_cancel_height=30
-
 [Logging]
 LogFile=xrdp.log
 LogLevel=DEBUG
