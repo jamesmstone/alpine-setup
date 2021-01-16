@@ -44,7 +44,7 @@ rc-update add termencoding boot
 rc-update add docker boot
 
 step 'Add X'
-setup-xorg-base
+setup-xorg-base || true
 add dwm \
   firefox \
   vino \
@@ -86,5 +86,4 @@ sudo -u james wget -O - https://github.com/jamesmstone.keys | sudo -u james tee 
 sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
 # Install dotfiles
 sudo -u james make -C /home/james/dotfiles
-
 
