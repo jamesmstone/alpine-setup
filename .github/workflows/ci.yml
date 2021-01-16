@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 0 * * *'  # every day at midnight
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Install qemu-utils
