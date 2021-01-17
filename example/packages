@@ -1,6 +1,7 @@
 bash
 chrony
 docker
+e2fsprogs-extra
 emacs-nox
 git
 keybase-client

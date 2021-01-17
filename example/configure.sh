@@ -185,6 +185,9 @@ EOF
 rc-update add xrdp
 rc-update add xrdp-sesman
 
+step 'Configure crontab'
+mkdir -p /etc/periodic/reboot
+echo "@reboot					run-parts /etc/periodic/reboot" >> /var/spool/cron/crontabs/root
 step 'Add default user'
 adduser james -D -G wheel;
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
