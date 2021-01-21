@@ -48,7 +48,9 @@ setup-xorg-base || true
 add dwm \
   firefox \
   xorgxrdp \
-  xrdp
+  xrdp \
+  x2goserver \
+  x2goserver-openrc
 
 sed -i -e '/# exec xterm/c\exec dwm' /etc/xrdp/startwm.sh
 cat <<EOF > /etc/xrdp/xrdp.ini
