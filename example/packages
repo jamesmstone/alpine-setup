@@ -4,6 +4,7 @@ docker
 e2fsprogs-extra
 emacs-nox
 git
+img
 keybase-client
 less
 logrotate
