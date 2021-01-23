@@ -193,6 +193,7 @@ echo "@reboot					run-parts /etc/periodic/reboot" >> /var/spool/cron/crontabs/ro
 step 'Add default user'
 adduser james -D -G wheel;
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
+addgroup james docker; # Add default user to docker group, see: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 
 # add ssh access from all my github keys
 sudo -u james mkdir -p /home/james/.ssh
