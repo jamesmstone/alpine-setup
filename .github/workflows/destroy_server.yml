@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Destroy all Server
+
+# Controls when the action will run.
+on:
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Destroy
+        env:
+          VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
+        run: |
+          curl  \
+          --silent \
+          --location \
+          --request GET 'https://api.vultr.com/v2/instances' \
+          --header 'Authorization: Bearer '${VULTR_API_KEY} \
+          | jq --raw-output .instances[].id  \
+          | xargs -n 1 -r -P 1 -I{} curl \
+          --location \
+          --request DELETE 'https://api.vultr.com/v2/instances/{}' \
+          --header 'Authorization: Bearer '${VULTR_API_KEY}

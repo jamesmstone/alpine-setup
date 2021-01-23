@@ -1,0 +1,91 @@
+name: CI
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install qemu-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install qemu-utils
+
+      - uses: actions/checkout@v2
+      - name: Build raw image
+        run: |
+          sudo ./alpine-make-vm-image \
+              --image-format raw \
+              --image-size 2023M  \
+              --repositories-file example/repositories \
+              --packages "$(cat example/packages)" \
+              --script-chroot \
+              alpine-virthardened.raw -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
+      - name: Build vhdx image
+        run: |
+          sudo ./alpine-make-vm-image \
+              --image-format vhdx \
+              --image-size 2023M  \
+              --repositories-file example/repositories \
+              --packages "$(cat example/packages)" \
+              --script-chroot \
+              alpine-virthardened.vhdx -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
+      - name: Delete latest release
+        uses: ame-yu/action-delete-latest-release@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}.${{ github.run_id }}
+          release_name: Release ${{ github.run_id }} - ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Raw Release Asset
+        id: upload_raw_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./alpine-virthardened.raw
+          asset_name: alpine-virthardened.raw
+          asset_content_type: application/raw
+      - name: Upload VHDX Release Asset
+        id: upload_vhdx_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./alpine-virthardened.vhdx
+          asset_name: alpine-virthardened.vhdx
+          asset_content_type: application/vhdx
+      - name: Vultr delete all exisiting snapshots
+        env:
+          VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
+        run: |
+          curl  \
+          --silent \
+          --location \
+          --request GET 'https://api.vultr.com/v2/snapshots' \
+          --header 'Authorization: Bearer '${VULTR_API_KEY} \
+          | jq --raw-output .snapshots[].id  \
+          | xargs -n 1 -r -P 1 -I{} curl \
+          --location \
+          --request DELETE 'https://api.vultr.com/v2/snapshots/{}' \
+          --header 'Authorization: Bearer '${VULTR_API_KEY}
+      - name: Vultr upload new snapshots
+        env:
+          VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
+        run: |
+          curl \
+          --location \
+          --request POST 'https://api.vultr.com/v2/snapshots/create-from-url' \
+          --header 'Authorization: Bearer '${VULTR_API_KEY} \
+          --header 'Content-Type: application/json' \
+          --data-raw '{ "url" : "'${{ steps.upload_raw_release_asset.outputs.browser_download_url }}'" }'

@@ -1,0 +1,16 @@
+bash
+chrony
+docker
+e2fsprogs-extra
+emacs-nox
+git
+keybase-client
+less
+logrotate
+make
+man-pages
+mandoc
+openrc
+openvpn
+sudo
+vim
