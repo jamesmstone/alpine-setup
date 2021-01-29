@@ -202,6 +202,7 @@ sudo -u james wget -O - https://github.com/jamesmstone.keys | sudo -u james tee 
 
 # Add dotfiles
 sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
+sudo -u james git -C /home/james/dotfiles/ remote set-url origin git@github.com:jamesmstone/dotfiles.git
 # Install dotfiles
 sudo -u james make -C /home/james/dotfiles
 
