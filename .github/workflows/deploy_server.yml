@@ -4,6 +4,7 @@ name: Deploy Server
 
 # Controls when the action will run.
 on:
+  repository_dispatch:
   workflow_dispatch:
     inputs:
       region:
