@@ -12,9 +12,9 @@ echo "snapshot_id:${snapshot_id}"
 
 instance=$( cat <<EOF
 {
-	"region" : "$VULTR_REGION",
-	"plan" : "$VULTR_PLAN",
-	"label" : "$VULTR_LABEL",
+	"region" : "${VULTR_REGION:-syd}",
+	"plan" : "${VULTR_PLAN:-vc2-1c-1gb}",
+	"label" : "${VULTR_LABEL:-GitHub deployed}",
 	"snapshot_id" : "$snapshot_id",
 	"backups": "disabled"
 }
