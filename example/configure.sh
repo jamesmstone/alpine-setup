@@ -31,7 +31,7 @@ sed -Ei \
 	/etc/rc.conf
 
 step 'Set up SSH'
-setup-sshd -c dropbear || true
+setup-sshd -c openssh || true
 add mosh
 
 step 'Enable services'
@@ -192,6 +192,8 @@ mkdir -p /etc/periodic/reboot
 echo "@reboot					run-parts /etc/periodic/reboot" >> /var/spool/cron/crontabs/root
 step 'Add default user'
 adduser james -D -G wheel;
+sed -i s/james:!/"james:*"/g /etc/shadow # https://github.com/camptocamp/puppet-accounts/issues/35#issuecomment-366412237
+echo "X11Forwarding yes" >>  /etc/ssh/sshd_config
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 addgroup james docker; # Add default user to docker group, see: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 
