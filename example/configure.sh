@@ -31,7 +31,7 @@ sed -Ei \
 	/etc/rc.conf
 
 step 'Set up SSH'
-setup-sshd -c dropbear || true
+setup-sshd -c openssh || true
 add mosh
 
 step 'Enable services'
@@ -52,6 +52,7 @@ add dwm \
   x2goserver \
   x2goserver-openrc
 
+echo "X11Forwarding yes" >>  /etc/ssh/sshd_config
 sed -i -e '/# exec xterm/c\exec dwm' /etc/xrdp/startwm.sh
 cat <<EOF > /etc/xrdp/xrdp.ini
 [Globals]
@@ -192,6 +193,7 @@ mkdir -p /etc/periodic/reboot
 echo "@reboot					run-parts /etc/periodic/reboot" >> /var/spool/cron/crontabs/root
 step 'Add default user'
 adduser james -D -G wheel;
+sed -i s/james:!/"james:*"/g /etc/shadow # https://github.com/camptocamp/puppet-accounts/issues/35#issuecomment-366412237
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 addgroup james docker; # Add default user to docker group, see: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 
