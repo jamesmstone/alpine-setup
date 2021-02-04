@@ -31,7 +31,7 @@ sed -Ei \
 	/etc/rc.conf
 
 step 'Set up SSH'
-setup-sshd -c dropbear || true
+setup-sshd -c openssh || true
 add mosh
 
 step 'Enable services'
