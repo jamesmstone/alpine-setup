@@ -2,7 +2,6 @@ apk-file
 bash
 bash-completion
 chrony
-docker
 e2fsprogs-extra
 emacs-nox
 git
