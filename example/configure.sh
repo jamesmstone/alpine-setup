@@ -56,7 +56,8 @@ add dwm \
   xorgxrdp \
   xrdp \
   x2goserver \
-  x2goserver-openrc
+  x2goserver-openrc \
+  perl-switch # a missing dependency of x2goserver
 
 echo "X11Forwarding yes" >>  /etc/ssh/sshd_config
 sed -i -e '/# exec xterm/c\exec dwm' /etc/xrdp/startwm.sh
