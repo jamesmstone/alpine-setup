@@ -23,6 +23,9 @@ EOF
 ln -s networking /etc/init.d/net.lo
 ln -s networking /etc/init.d/net.eth0
 
+step 'set hostname'
+echo "01.jamesst.one" > /etc/hostname
+
 step 'Adjust rc.conf'
 sed -Ei \
 	-e 's/^[# ](rc_depend_strict)=.*/\1=NO/' \
