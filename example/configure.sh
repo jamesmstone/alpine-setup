@@ -199,6 +199,7 @@ mkdir -p /etc/periodic/reboot
 echo "@reboot					run-parts /etc/periodic/reboot" >> /var/spool/cron/crontabs/root
 step 'Add default user'
 adduser james -D -G wheel;
+addgroup james x2gouser;
 sed -i s/james:!/"james:*"/g /etc/shadow # https://github.com/camptocamp/puppet-accounts/issues/35#issuecomment-366412237
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 
