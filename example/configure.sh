@@ -45,9 +45,7 @@ rc-update add crond default
 rc-update add net.eth0 default
 rc-update add net.lo boot
 rc-update add termencoding boot
-
-step 'Containers'
-add podman
+rc-update add docker boot
 
 step 'Add X'
 setup-xorg-base || true
@@ -67,6 +65,7 @@ adduser james -D -G wheel;
 addgroup james x2gouser;
 sed -i s/james:!/"james:*"/g /etc/shadow # https://github.com/camptocamp/puppet-accounts/issues/35#issuecomment-366412237
 echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
+addgroup james docker; # Add default user to docker group, see: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 
 # add ssh access from all my github keys
 sudo -u james mkdir -p /home/james/.ssh
