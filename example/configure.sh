@@ -46,6 +46,7 @@ rc-update add net.eth0 default
 rc-update add net.lo boot
 rc-update add termencoding boot
 rc-update add docker boot
+rc-update add bitlbee default
 
 step 'Add X'
 setup-xorg-base || true
