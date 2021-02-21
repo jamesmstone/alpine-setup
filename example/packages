@@ -5,6 +5,7 @@ bitlbee-mastodon
 bitlbee-openrc
 bash
 bash-completion
+browserpass
 chrony
 docker
 e2fsprogs-extra
@@ -20,6 +21,9 @@ mandoc
 monkeysphere
 openrc
 openvpn
+pass
+pass-bash-completion
+pass-git-helper
 ripgrep
 sudo
 vim
