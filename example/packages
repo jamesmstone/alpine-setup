@@ -1,10 +1,10 @@
 apk-file
+bash
+bash-completion
 bitlbee
 bitlbee-facebook
 bitlbee-mastodon
 bitlbee-openrc
-bash
-bash-completion
 browserpass
 chrony
 docker
@@ -12,6 +12,7 @@ e2fsprogs-extra
 emacs-nox
 fd
 git
+isync
 keybase-client
 less
 logrotate
