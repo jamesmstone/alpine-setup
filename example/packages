@@ -19,6 +19,7 @@ make
 man-pages
 mandoc
 monkeysphere
+mu
 openrc
 openvpn
 pass
