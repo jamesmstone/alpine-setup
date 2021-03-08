@@ -4,6 +4,7 @@ bash-completion
 browserpass
 chrony
 docker
+docker-compose
 e2fsprogs-extra
 emacs-nox
 fd
