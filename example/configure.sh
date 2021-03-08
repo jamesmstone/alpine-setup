@@ -55,7 +55,7 @@ add dwm \
   x2goserver-openrc \
   perl-switch # a missing dependency of x2goserver
 
-echo "X11Forwarding yes" >>  /etc/ssh/sshd_config
+sed -i '/.*X11Forwarding.*/ c X11Forwarding yes' /etc/ssh/sshd_config
 
 step 'Configure crontab'
 mkdir -p /etc/periodic/reboot
