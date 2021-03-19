@@ -25,4 +25,5 @@ pass-bash-completion
 pass-git-helper
 ripgrep
 sudo
+telegram-tdlib-static
 vim
