@@ -12,6 +12,7 @@ git
 isync
 keybase-client
 less
+libvterm
 logrotate
 make
 man-pages
