@@ -24,6 +24,7 @@ openvpn
 pass
 pass-bash-completion
 pass-git-helper
+postgresql-client
 ripgrep
 sudo
 telegram-tdlib-static
