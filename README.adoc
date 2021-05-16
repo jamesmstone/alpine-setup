@@ -1,4 +1,5 @@
 = Make my Alpine Linux setup
+:script-name: alpine-setup
 :gh-name: jamesmstone/{script-name}
 
 ifdef::env-github[]
