@@ -47,15 +47,15 @@ rc-update add net.lo boot
 rc-update add termencoding boot
 rc-update add docker boot
 
-step 'Add X'
-setup-xorg-base || true
-add dwm \
-  firefox \
-  x2goserver \
-  x2goserver-openrc \
-  perl-switch # a missing dependency of x2goserver
+# step 'Add X'
+# setup-xorg-base || true
+# add dwm \
+#   firefox \
+#   x2goserver \
+#   x2goserver-openrc \
+#   perl-switch # a missing dependency of x2goserver
 
-sed -i '/.*X11Forwarding.*/ c X11Forwarding yes' /etc/ssh/sshd_config
+# sed -i '/.*X11Forwarding.*/ c X11Forwarding yes' /etc/ssh/sshd_config
 
 step 'Configure crontab'
 mkdir -p /etc/periodic/reboot
