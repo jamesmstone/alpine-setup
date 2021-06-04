@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo ./alpine-make-vm-image \
               --image-format raw \
-              --image-size 6023M  \
+              --image-size 2023M  \
               --repositories-file example/repositories \
               --packages "$(cat example/packages)" \
               --script-chroot \
