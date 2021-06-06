@@ -5,6 +5,7 @@ bash
 bash-completion
 browserpass
 chrony
+curl
 docker
 docker-compose
 e2fsprogs-extra
@@ -12,6 +13,7 @@ emacs-nox
 fd
 git
 isync
+jq
 keybase-client
 less
 libvterm
