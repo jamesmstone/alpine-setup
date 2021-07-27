@@ -65,6 +65,7 @@ jobs:
       - name: create zsync file
         run: |
           zsyncmake  \
+          -z \
           -u  ${{ steps.upload_raw_release_asset.outputs.browser_download_url }} \
           ./alpine-virthardened.raw
       - name: Upload Raw Release zsync Asset
@@ -75,7 +76,17 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: ./alpine-virthardened.raw.zsync
-          asset_name: alpine-virthardened.raw,zsync
+          asset_name: alpine-virthardened.raw.zsync
+          asset_content_type: application/x-zsync
+      - name: Upload Raw Release zsync.gz Asset
+        id: upload_raw_release_zsync_gz_asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./alpine-virthardened.raw.gz
+          asset_name: alpine-virthardened.raw.gz
           asset_content_type: application/x-zsync
 #      - name: Upload VHDX Release Asset
 #        id: upload_vhdx_release_asset
