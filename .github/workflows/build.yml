@@ -66,7 +66,6 @@ jobs:
         run: |
           zsyncmake  \
           -z \
-          -u  ${{ steps.upload_raw_release_asset.outputs.browser_download_url }} \
           ./alpine-virthardened.raw
       - name: Upload Raw Release zsync Asset
         id: upload_raw_release_zsync_asset
