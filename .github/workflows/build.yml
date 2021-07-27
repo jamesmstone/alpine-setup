@@ -25,15 +25,15 @@ jobs:
               --packages "$(cat example/packages)" \
               --script-chroot \
               alpine-virthardened.raw -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
-#      - name: Build vhdx image
-#        run: |
-#          sudo ./alpine-make-vm-image \
-#              --image-format vhdx \
-#              --image-size 2023M  \
-#              --repositories-file example/repositories \
-#              --packages "$(cat example/packages)" \
-#              --script-chroot \
-#              alpine-virthardened.vhdx -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
+      - name: Build vhdx image
+        run: |
+          sudo ./alpine-make-vm-image \
+              --image-format vhdx \
+              --image-size 2023M  \
+              --repositories-file example/repositories \
+              --packages "$(cat example/packages)" \
+              --script-chroot \
+              alpine-virthardened.vhdx -- ./example/configure.sh # max file size for github releases is 1 byte less the 2 GB
       - name: Delete latest release
         uses: ame-yu/action-delete-latest-release@v2
         with:
@@ -58,16 +58,16 @@ jobs:
           asset_path: ./alpine-virthardened.raw
           asset_name: alpine-virthardened.raw
           asset_content_type: application/raw
-#      - name: Upload VHDX Release Asset
-#        id: upload_vhdx_release_asset
-#        uses: actions/upload-release-asset@v1.0.2
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-#          asset_path: ./alpine-virthardened.vhdx
-#          asset_name: alpine-virthardened.vhdx
-#          asset_content_type: application/vhdx
+      - name: Upload VHDX Release Asset
+        id: upload_vhdx_release_asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./alpine-virthardened.vhdx
+          asset_name: alpine-virthardened.vhdx
+          asset_content_type: application/vhdx
       - name: Vultr delete all exisiting snapshots
         env:
           VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
