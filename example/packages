@@ -27,6 +27,7 @@ mu4e
 nodejs
 npm
 openrc
+openssl
 openvpn
 pass
 pass-bash-completion
