@@ -7,4 +7,4 @@ image:https://github.com/{gh-name}/workflows/CI/badge.svg["Build Status", link="
 endif::env-github[]
 
 
-The OS configuration lives in the `example` dir
+The OS configuration lives in the `example` dir.
