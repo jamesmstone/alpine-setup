@@ -3,6 +3,8 @@ aspell
 aspell-en
 bash
 bash-completion
+bitlbee
+bitlbee-openrc
 browserpass
 chrony
 curl
