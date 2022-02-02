@@ -122,6 +122,7 @@ jobs:
         env:
           VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
         run: |
+          echo "${{ steps.upload_raw_release_asset.outputs.browser_download_url }}";
           curl \
           --location \
           --request POST 'https://api.vultr.com/v2/snapshots/create-from-url' \
