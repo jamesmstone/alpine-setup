@@ -119,7 +119,6 @@ jobs:
           --connect-timeout 5 \
           --max-time 10 \
           --retry 25 \
-          --retry-all-errors \
           --request GET '${{ steps.upload_raw_release_asset.outputs.browser_download_url }}'
 
       - name: Vultr upload new snapshots
