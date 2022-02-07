@@ -111,15 +111,6 @@ jobs:
           --location \
           --request DELETE 'https://api.vultr.com/v2/snapshots/{}' \
           --header 'Authorization: Bearer '${VULTR_API_KEY}
-          
-      - name: Test can download new release
-        run: |
-          curl \
-          --location \
-          --connect-timeout 5 \
-          --max-time 10 \
-          --retry 25 \
-          --request GET '${{ steps.upload_raw_release_asset.outputs.browser_download_url }}'
 
       - name: Vultr upload new snapshots
         env:
