@@ -71,6 +71,9 @@ addgroup james docker; # Add default user to docker group, see: https://docs.doc
 sudo -u james mkdir -p /home/james/.ssh
 sudo -u james wget -O - https://github.com/jamesmstone.keys | sudo -u james tee -a /home/james/.ssh/authorized_keys
 
+# add mcfly
+step 'Add mcfly'
+curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly
 
 # Add dotfiles
 sudo -u james git clone https://github.com/jamesmstone/dotfiles.git  /home/james/dotfiles
