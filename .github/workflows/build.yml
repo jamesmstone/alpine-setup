@@ -4,8 +4,8 @@ on:
     types: [build]
   workflow_dispatch:
   push:
-  schedule:
-    - cron: '0 0 * * *'  # every day at midnight
+#   schedule:
+#     - cron: '0 0 * * *'  # every day at midnight
 jobs:
   build:
     runs-on: ubuntu-latest
