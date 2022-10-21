@@ -81,3 +81,6 @@ sudo -u james git -C /home/james/dotfiles/ remote set-url origin git@github.com:
 # Install dotfiles
 sudo -u james make -C /home/james/dotfiles
 
+
+step 'List /usr/local/bin'
+ls -la /usr/local/bin
