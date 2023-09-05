@@ -15,7 +15,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install qemu-utils
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build raw image
         run: |
           sudo ./alpine-make-vm-image \
